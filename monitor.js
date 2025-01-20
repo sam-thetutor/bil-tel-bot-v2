@@ -146,7 +146,7 @@ function setupBotHandlers() {
             botChats.add(chatId);
             console.log(`Bot added to group: ${msg.chat.title} (${chatId})`);
             console.log("chat id added to the canister",h);
-            safeMessageSend(chatId, '👋 Hello! I am now active in this group and will send periodic updates.');
+            safeMessageSend(chatId, '👋 BIL Block Monitor is now active in this group and will send periodic updates.');
         }
     });
 
@@ -157,18 +157,18 @@ function setupBotHandlers() {
         console.log("chat id added to the canister",chatId?.toString());
         let h= await storecanisterActor.addTelegramGroupCode(chatId.toString());
         console.log("chat id added to the canister",chatId);
-        safeMessageSend(chatId, '👋 Thank you for creating a group with me! I am now active and will send periodic updates.');
+        safeMessageSend(chatId, '👋 BIL Block Monitor is now active in this group and will send periodic updates.');
     });
 
-    bot.on('new_chat_members', async(msg) => {
-        if (msg.new_chat_members.some(member => member.id === bot.botInfo.id)) {
-            const chatId = msg.chat.id;
-            // botChats.add(chatId);
-            let h= await storecanisterActor.addTelegramGroupCode(chatId.toString());
-            console.log("chat id added to the canister",chatId);
-            safeMessageSend(chatId, '👋 Thank you for adding me! I am now active and will send periodic updates.');
-        }
-    });
+    // bot.on('new_chat_members', async(msg) => {
+    //     if (msg.new_chat_members.some(member => member.id === bot.botInfo.id)) {
+    //         const chatId = msg.chat.id;
+    //         // botChats.add(chatId);
+    //         let h= await storecanisterActor.addTelegramGroupCode(chatId.toString());
+    //         console.log("chat id added to the canister",chatId);
+    //         safeMessageSend(chatId, '👋 BIL Block Monitor is now active in this group and will send periodic updates.');
+    //     }
+    // });
 }
 
 // Safe message sending with retry logic
