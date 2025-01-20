@@ -161,8 +161,8 @@ function setupBotHandlers() {
     });
 
     bot.on('new_chat_members', async(msg) => {
-        if (msg.new_chat_members.some(member => member.id === bot.botInfo.id)) {
-            const chatId = msg.chat.id;
+        if (msg.new_chat_members.some(member => member?.id === bot?.botInfo?.id)) {
+            const chatId = msg?.chat?.id;
             // botChats.add(chatId);
             let h= await storecanisterActor.addTelegramGroupCode(chatId.toString());
             console.log("chat id added to the canister",chatId);
