@@ -249,7 +249,7 @@ async function fetchData() {
     try {
 
         let results = await bilBackendActor.get_latest_block();
-        console.log("current block height :",results?.header?.height);
+        console.log("current block height :",results);
         return results?.header?.height
 
 
