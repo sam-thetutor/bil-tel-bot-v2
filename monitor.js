@@ -139,16 +139,16 @@ let previousValue = null;
 // Setup bot event handlers
 function setupBotHandlers() {
     // Listen for new group additions
-    bot.on('message', async(msg) => {
-        const chatId = msg.chat.id;
-        if (msg.chat.type === 'group' || msg.chat.type === 'supergroup') {
-           let h= await storecanisterActor.addTelegramGroupCode(chatId.toString());
-            botChats.add(chatId);
-            console.log(`Bot added to group: ${msg.chat.title} (${chatId})`);
-            console.log("chat id added to the canister",h);
-            safeMessageSend(chatId, '👋 BIL Block Monitor is now active in this group and will send periodic updates.');
-        }
-    });
+    // bot.on('message', async(msg) => {
+    //     const chatId = msg.chat.id;
+    //     if (msg.chat.type === 'group' || msg.chat.type === 'supergroup') {
+    //        let h= await storecanisterActor.addTelegramGroupCode(chatId.toString());
+    //         botChats.add(chatId);
+    //         console.log(`Bot added to group: ${msg.chat.title} (${chatId})`);
+    //         console.log("chat id added to the canister",h);
+    //         safeMessageSend(chatId, '👋 BIL Block Monitor is now active in this group and will send periodic updates.');
+    //     }
+    // });
 
     // Handle when bot is added to a group
     bot.on('group_chat_created', async(msg) => {
@@ -160,15 +160,15 @@ function setupBotHandlers() {
         safeMessageSend(chatId, '👋 BIL Block Monitor is now active in this group and will send periodic updates.');
     });
 
-    bot.on('new_chat_members', async(msg) => {
-        if (msg.new_chat_members.some(member => member?.id === bot?.botInfo?.id)) {
-            const chatId = msg?.chat?.id;
-            // botChats.add(chatId);
-            let h= await storecanisterActor.addTelegramGroupCode(chatId.toString());
-            console.log("chat id added to the canister",chatId);
-            safeMessageSend(chatId, '👋 BIL Block Monitor is now active in this group and will send periodic updates.');
-        }
-    });
+    // bot.on('new_chat_members', async(msg) => {
+    //     if (msg.new_chat_members.some(member => member?.id === bot?.botInfo?.id)) {
+    //         const chatId = msg?.chat?.id;
+    //         // botChats.add(chatId);
+    //         let h= await storecanisterActor.addTelegramGroupCode(chatId.toString());
+    //         console.log("chat id added to the canister",chatId);
+    //         safeMessageSend(chatId, '👋 BIL Block Monitor is now active in this group and will send periodic updates.');
+    //     }
+    // });
 }
 
 // Safe message sending with retry logic
